@@ -1,0 +1,9 @@
+Library/
+Temp/
+.vscode/
+Logs/
+UserSettings/
+*.sln
+*.userprefs
+*.unityproj
+*.DS_Store
