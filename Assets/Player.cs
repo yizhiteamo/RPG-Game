@@ -32,12 +32,14 @@ public class Player : MonoBehaviour
 
 	#region States
 	public PlayerStateMatchine stateMachine {  get; private set; }
-	public PlayerIdle playerIdle { get; private set; }
-	public PlayerMovement playerMove { get; private set; }
-	public PlayerJumpState playerJump { get; private set; }
+	public PlayerIdle idelState { get; private set; }
+	public PlayerMovement moveState { get; private set; }
+	public PlayerJumpState jumpState { get; private set; }
 	public PlayerAirState airState { get; private set; }
 	public PlayerDashState dashState { get; private set; }
 	public PlayerWallSlideState wallSlide { get; private set; }
+	public PlayerWallJumpState wallJump { get; private set; }
+	public PlayerPrimaryAttackState primaryAttack { get; private set; }
 	#endregion
 
 	public int facingDir { get; private set; } = 1;
@@ -48,17 +50,21 @@ public class Player : MonoBehaviour
 	{
 		stateMachine = new PlayerStateMatchine();
 
-		playerIdle = new PlayerIdle(this, stateMachine, "Idle");
+		idelState = new PlayerIdle(this, stateMachine, "Idle");
 
-		playerMove = new PlayerMovement(this, stateMachine, "Move");
+		moveState = new PlayerMovement(this, stateMachine, "Move");
 
-		playerJump = new PlayerJumpState(this, stateMachine, "Jump");
+		jumpState = new PlayerJumpState(this, stateMachine, "Jump");
 
 		airState  = new PlayerAirState(this, stateMachine, "Jump");
 
 		dashState = new PlayerDashState(this, stateMachine, "Dash");
 
 		wallSlide = new PlayerWallSlideState(this, stateMachine, "WallSlide");
+
+		wallJump  = new PlayerWallJumpState(this, stateMachine, "Jump");
+
+		primaryAttack = new PlayerPrimaryAttackState(this, stateMachine, "Attack");
 	}
 
 	private void Start()
@@ -68,7 +74,7 @@ public class Player : MonoBehaviour
 
 		rb = GetComponent<Rigidbody2D>();
 
-		stateMachine.Initialize(playerIdle);
+		stateMachine.Initialize(idelState);
 
 	}
 
@@ -79,8 +85,15 @@ public class Player : MonoBehaviour
 		CheckForDashInput();
 	}
 
+	public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
+
 	public void CheckForDashInput()
 	{
+
+		if (IsWallDetected())
+		{
+			return;
+		}
 
 		if (Input.GetKeyDown(KeyCode.LeftShift) && dashUsageTimer <= 0) {
 

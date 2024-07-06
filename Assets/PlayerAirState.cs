@@ -29,7 +29,7 @@ public class PlayerAirState : PlayerState
 
 		if (player.IsGroundDetected())
 		{
-			player.stateMachine.Change(player.playerIdle);
+			player.stateMachine.Change(player.idelState);
 		}
 
 		if (xInput != 0)

@@ -26,11 +26,16 @@ public class PlayerDashState : PlayerState
 	{
 		base.Update();
 
+		if (!player.IsGroundDetected() && player.IsWallDetected())
+		{
+			player.stateMachine.Change(player.wallSlide);
+		}
+
 		player.SetVelocity(player.dashSpeed * player.dashDir, rb.velocity.y);
 
 		if (stateTimer < 0)
 		{
-			player.stateMachine.Change(player.playerIdle);
+			player.stateMachine.Change(player.idelState);
 		}
 	}
 }

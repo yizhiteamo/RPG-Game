@@ -22,6 +22,11 @@ public class PlayerGroundedState : PlayerState
 	{
 		base.Update();
 
+		if (Input.GetKeyDown(KeyCode.Mouse0))
+		{
+			player.stateMachine.Change(player.primaryAttack);
+		}
+
 		if (!player.IsGroundDetected())
 		{
 			player.stateMachine.Change(player.airState);
@@ -29,7 +34,7 @@ public class PlayerGroundedState : PlayerState
 
 		if (Input.GetKeyDown(KeyCode.Space))
 		{
-			player.stateMachine.Change(player.playerJump);
+			player.stateMachine.Change(player.jumpState);
 		}
 	}
 }

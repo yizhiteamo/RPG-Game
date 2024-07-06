@@ -23,9 +23,15 @@ public class PlayerWallSlideState : PlayerState
 	{
 		base.Update();
 
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			stateMachine.Change(player.wallJump);
+			return;
+		}
+
 		if (xInput != 0 && xInput != player.facingDir)
 		{
-			stateMachine.Change(player.playerIdle);
+			stateMachine.Change(player.idelState);
 		}
 	
 		if (yInput < 0)
@@ -40,7 +46,7 @@ public class PlayerWallSlideState : PlayerState
 
 		if (player.IsGroundDetected())
 		{
-			stateMachine.Change(player.playerIdle);
+			stateMachine.Change(player.idelState);
 		}
 	}
 }
