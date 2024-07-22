@@ -30,11 +30,6 @@ public class PlayerMovement : PlayerGroundedState
 		{
 			player.stateMachine.Change(player.idelState);
 		}
-		
-		if (Input.GetKeyDown(KeyCode.Mouse0))
-		{
-			player.SetVelocity(0, 0);
-		}
 
 	}
 }

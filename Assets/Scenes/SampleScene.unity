@@ -438,6 +438,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a109e3eafc0cfd4b87ba8eed20624df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackMovement:
+  - {x: 3, y: 1.5}
+  - {x: 1, y: 2.5}
+  - {x: 4, y: 1.5}
   moveSpeed: 8
   jumpForce: 12
   dashSpeed: 25
@@ -527,8 +531,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.49990028, y: -0.34956312}
-  m_Size: {x: 0.9983269, y: 2.1229715}
+  m_Offset: {x: -0.49990028, y: -0.30617714}
+  m_Size: {x: 0.9983269, y: 2.0361996}
   m_Direction: 0
 --- !u!1 &1123222182
 GameObject:

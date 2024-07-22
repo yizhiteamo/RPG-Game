@@ -5,6 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+	[Header("Attack Detail")]
+	public Vector2[] attackMovement;
+
+	public bool isBusy { get; private set; }
 	[Header("Move Info")]
 	public float moveSpeed = 8f;
 	public float jumpForce = 12f;
@@ -85,6 +89,14 @@ public class Player : MonoBehaviour
 		CheckForDashInput();
 	}
 
+	public IEnumerator BusyFor(float _second)
+	{
+		isBusy = true;
+		yield return new WaitForSeconds(_second);
+		isBusy = false;
+
+	}
+
 	public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
 	public void CheckForDashInput()
@@ -111,12 +123,18 @@ public class Player : MonoBehaviour
 
 	}
 
+	#region Velocity
+	public void ZeroVelocity() => rb.velocity = new Vector2 (0, 0);
+
 	public void SetVelocity(float _xVelocity, float _yVelocity)
 	{
 		rb.velocity = new Vector2(_xVelocity, _yVelocity);
 
 		FlipController(_xVelocity);
 	}
+	#endregion
+
+	#region Collision
 
 	public bool IsGroundDetected() => Physics2D.Raycast(groundCheckCollision.position, Vector2.down, groundCheckDistance, whatIsGround);
 
@@ -128,6 +146,9 @@ public class Player : MonoBehaviour
 		Gizmos.DrawLine(wallCheckCollision.position, new Vector3(wallCheckCollision.position.x + wallCheckDistance, wallCheckCollision.position.y));
 	}
 
+	#endregion
+
+	#region Flip
 	public void Flip()
 	{
 		facingDir *= -1;
@@ -145,5 +166,5 @@ public class Player : MonoBehaviour
 			Flip();
 		}
 	}
-
+	#endregion
 }

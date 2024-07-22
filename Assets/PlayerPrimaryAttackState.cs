@@ -22,6 +22,10 @@ public class PlayerPrimaryAttackState : PlayerState
 			comboConuter = 0;
 		}
 
+		stateTimer = .1f;
+
+		player.SetVelocity(player.attackMovement[comboConuter].x * player.facingDir, player.attackMovement[comboConuter].y);
+
 		player.anim.SetInteger("ComboCounter", comboConuter);
 	}
 
@@ -29,7 +33,7 @@ public class PlayerPrimaryAttackState : PlayerState
 	{
 		comboConuter++;
 		lastTimeAttack = Time.time;
-
+		player.StartCoroutine("BusyFor", .15f);
 		base.Exit();
 	}
 
@@ -40,6 +44,11 @@ public class PlayerPrimaryAttackState : PlayerState
 		if (triggerCalled)
 		{
 			player.stateMachine.Change(player.idelState);
+		}
+
+		if (stateTimer < 0)
+		{
+			player.ZeroVelocity();
 		}
 	}
 }
