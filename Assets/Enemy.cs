@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
+	[SerializeField] protected LayerMask whatIsPlayer;
+
 	[Header("Move Info")]
 	public float moveSpeed;
 	public float idleTime;
+	[Header("Attack Info")]
+	public float attackDistance;
 
 	public EnemyStateMachine stateMachine { get; private set; }
 
@@ -20,6 +24,17 @@ public class Enemy : Entity
 	{
 		base.Update();
 		stateMachine.currentState.Update();
+
+		Debug.Log(IsPlayerDetected().collider.gameObject.name);
 	}
 
+	public virtual RaycastHit2D IsPlayerDetected() => Physics2D.Raycast(wallCheckCollision.position, Vector2.right * facingDir, 50f, whatIsPlayer);
+
+	protected override void OnDrawGizmos()
+	{
+		base.OnDrawGizmos();
+
+		Gizmos.color = Color.yellow;
+		Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + attackDistance * facingDir, transform.position.y));
+	}
 }

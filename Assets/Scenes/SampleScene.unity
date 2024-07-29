@@ -132,7 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 131147793}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundCheckCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 146030942}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: WallCheckCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 445639414}
   - component: {fileID: 445639415}
   - component: {fileID: 445639416}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy_Skeleton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,13 +297,14 @@ Transform:
   m_GameObject: {fileID: 445639412}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 15.48, y: -0.92, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 15.48, y: -0.44, z: 0}
+  m_LocalScale: {x: 1.4, y: 1.4, z: 1.4}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1785781494}
   - {fileID: 1104196133}
   - {fileID: 2000150902}
+  - {fileID: 1538183028}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &445639414
@@ -318,13 +319,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c6a76ba58ffa9e45a2dced6c8d51f2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCheckCollision: {fileID: 1104196133}
+  wallCheckCollision: {fileID: 1538183028}
   wallCheckDistance: 0.8
   groundCheckCollision: {fileID: 2000150902}
   groundCheckDistance: 0.4
   whatIsGround:
     serializedVersion: 2
     m_Bits: 8
+  whatIsPlayer:
+    serializedVersion: 2
+    m_Bits: 64
   moveSpeed: 1.5
   idleTime: 2
 --- !u!50 &445639415
@@ -701,7 +705,7 @@ GameObject:
   - component: {fileID: 838092559}
   - component: {fileID: 838092562}
   - component: {fileID: 838092561}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -996,7 +1000,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1104196133}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: WallCheckCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1706,6 +1710,37 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &1538183027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1538183028}
+  m_Layer: 7
+  m_Name: WallCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1538183028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538183027}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 445639413}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1547134606
 GameObject:
   m_ObjectHideFlags: 3
@@ -1890,7 +1925,7 @@ GameObject:
   - component: {fileID: 1588740642}
   - component: {fileID: 1588740643}
   - component: {fileID: 1588740644}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2108,7 +2143,7 @@ GameObject:
   - component: {fileID: 1785781494}
   - component: {fileID: 1785781495}
   - component: {fileID: 1785781496}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Animator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3746,7 +3781,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2000150902}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: GroundCheckCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

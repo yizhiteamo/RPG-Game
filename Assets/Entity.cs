@@ -50,6 +50,8 @@ public class Entity : MonoBehaviour
 		Gizmos.DrawLine(wallCheckCollision.position, new Vector3(wallCheckCollision.position.x + wallCheckDistance, wallCheckCollision.position.y));
 	}
 
+
+
 	#endregion
 
 	#region Flip
